@@ -1,0 +1,31 @@
+{
+	"name": "KhulnaSoft dev container",
+	"image": "mcr.microsoft.com/devcontainers/base:debian",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/github-cli": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "3.11"
+		}
+	},
+	// use 'forwardPorts' to make a list of ports inside the container available locally
+	"forwardPorts": [
+		45132,
+		3000,
+		4000,
+		35142
+	],
+	"appPort": [
+		45132,
+		3000,
+		4000,
+		35142
+	],
+	// start's the khulnasoft server that runs command on codespace
+	"postStartCommand": "mkdir -p /etc/khulnasoft && curl -o /etc/khulnasoft/start.sh https://raw.githubusercontent.com/khulnasoft/KhulnaSoft-for-Github-Copilot/main/scripts/start.sh && chmod +x /etc/khulnasoft/start.sh && /etc/khulnasoft/start.sh",
+	"remoteUser": "root"
+}
